@@ -1,9 +1,16 @@
 from __future__ import print_function
 from tkinter import *
 from PIL import Image, ImageTk
-
+import random
 
 class App(Frame):
+
+    ships = ["ddg", "cg", "lcs", "lsd", "lha", "lhd", "cvn", "lcc", "lpd", "lcac", "mcm", "pc", "as"]
+    subs = ["ssgn", "ssbn", "ssn"]
+    fixed = ["c2", "c130", "e2c", "e2d", "e6b", "ea6b", "ea18g", "ep3e", "f18c", "f18d", "f18e", "f18f", "p8", "p3", "t6", "t39", "t45", "f35b", "f35c", "mv-22"]
+    rotary = ["ch53", "mh53", "mh60s", "mh60r", "th57", "mv-22"]
+    unmanned = ["mq8", "mq4c", "x47"]
+    platforms = [ships, subs, fixed, rotary, unmanned]
 
     def __init__(self, parent):
 
@@ -32,12 +39,15 @@ class App(Frame):
 
         count = 0
 
-        image = Image.open("images/c_2")
-        photo = ImageTk.PhotoImage(image)
+        while(count <= 30):
+            randImage = chooseImage();
 
-        w = Label(self, image=photo)
-        w.photo = photo
-        w.pack()
+            image = Image.open(randImage)
+            photo = ImageTk.PhotoImage(image)
+
+            w = Label(self, image=photo)
+            w.photo = photo
+            w.pack()
 
         v = IntVar()
 
@@ -47,6 +57,8 @@ class App(Frame):
         self.button = Button(self, text="SUBMIT", command=self.submit)
         self.button.pack(side=LEFT)
 
+    def chooseImage(self):
+        rand = randrange()
 
     def submit(self):
         print ("submit")
